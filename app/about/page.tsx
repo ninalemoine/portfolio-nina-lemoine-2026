@@ -74,7 +74,7 @@ export default function AboutPage() {
                     <span className="absolute -left-[37px] top-2 w-4 h-4 bg-zinc-700 rounded-full border-4 border-zinc-950" />
                     <span className="text-sm text-zinc-500 font-bold tracking-widest uppercase">2024 - 2025</span>
                     <h3 className="text-2xl font-bold mt-2">Chargée d&apos;Opérations @ Zenpark</h3>
-                    <p className="text-zinc-400">Stage - Paris</p>
+                    <p className="text-zinc-400">Alterance - Paris</p>
                     <ul className="list-disc list-inside mt-4 text-zinc-300 space-y-1 text-sm">
                         <li>Gestion de la base de données clients.</li>
                         <li>Automatisation de processus via Make (No-code).</li>
