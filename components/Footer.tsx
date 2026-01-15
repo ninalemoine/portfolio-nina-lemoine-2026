@@ -12,7 +12,7 @@ export default function Footer() {
             
             <div className="container mx-auto px-4 flex flex-col items-center text-center">
                 <h2 className="text-[12vw] md:text-[8vw] font-bold leading-none tracking-tighter mb-8">
-                    LET'S TALK
+                    LET&apos;S TALK
                 </h2>
                 
                 <div className="flex flex-col md:flex-row gap-8 md:gap-20 items-center text-lg md:text-xl font-light">

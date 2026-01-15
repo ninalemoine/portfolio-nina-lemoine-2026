@@ -44,7 +44,7 @@ export default function About() {
             
             <p className="text-lg text-zinc-300 leading-relaxed mb-8">
                 Ancienne skieuse de haut niveau reconvertie dans la Data Science. 
-                J'apporte la même rigueur sur les pistes que dans mes analyses.
+                J&apos;apporte la même rigueur sur les pistes que dans mes analyses.
                 <br /><br />
                 Actuellement en alternance chez <strong>Carrefour</strong> et étudiante en MSc Business Analytics à Eugenia School.
             </p>

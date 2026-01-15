@@ -4,6 +4,7 @@ import { useScroll, useTransform, motion } from 'framer-motion';
 // J'ai ajouté SiBitcoin dans les imports
 import { SiPython, SiTableau, SiMysql, SiR, SiFigma, SiOpenai, SiBitcoin } from 'react-icons/si';
 import { FaSkiing, FaRunning, FaBrain, FaChartBar } from 'react-icons/fa';
+import { IconType } from 'react-icons'; 
 
 const slider1 = [
     { icon: SiPython, title: "Python", color: "#3776AB" },
@@ -74,7 +75,7 @@ export default function SlidingImages() {
 }
 
 // Le composant Carte unitaire
-function Card({ item }: any) {
+function Card({ item }: { item: { icon: IconType, title: string, color: string } }) {
     return (
         <div className="group relative w-[200px] h-[200px] shrink-0 flex flex-col items-center justify-center rounded-3xl bg-zinc-900/30 border border-white/5 hover:border-white/20 hover:bg-zinc-900/80 transition-all duration-500 cursor-default">
             

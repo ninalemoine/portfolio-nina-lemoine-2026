@@ -25,7 +25,7 @@ export default function Skills() {
                 <div className="w-full md:w-1/3">
                     <h2 className="text-3xl font-bold mb-4">Expertise.<br /><span className="text-zinc-500">Toolkit 360°</span></h2>
                     <p className="text-zinc-400 text-sm leading-relaxed">
-                        Une approche hybride combinant la rigueur de l'ingénierie des données, la puissance de l'automatisation et la vision produit.
+                        Une approche hybride combinant la rigueur de l&apos;ingénierie des données, la puissance de l&apos;automatisation et la vision produit.
                     </p>
                 </div>
 

@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 
-// CORRECTION ICI : On ajoute le type "any" pour éviter l'erreur sur le ease
+// Correction 1 : On ignore l'erreur pour 'anim'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const anim: any = {
     initial: {width: 0},
     open: {width: "auto", transition: {duration: 0.4, ease: [0.23, 1, 0.32, 1]}},
     closed: {width: 0}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ProjectItem({ project }: any) {
     const [isActive, setIsActive] = useState(false);
     const { title, category, image, slug } = project;

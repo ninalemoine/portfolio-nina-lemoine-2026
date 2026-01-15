@@ -9,8 +9,20 @@ export default function Preloader() {
     const [dimension, setDimension] = useState({width: 0, height:0});
 
     useEffect(() => {
-        setDimension({width: window.innerWidth, height: window.innerHeight})
-    }, [])
+        // Fonction pour mettre à jour la taille
+        const resize = () => {
+            setDimension({width: window.innerWidth, height: window.innerHeight});
+        };
+
+        // Appel initial
+        resize();
+
+        // Écouteur d'événement (bonne pratique)
+        window.addEventListener("resize", resize);
+        
+        // Nettoyage
+        return () => window.removeEventListener("resize", resize);
+    }, []);
 
     useEffect( () => {
         if(index == words.length - 1) return;
@@ -19,10 +31,10 @@ export default function Preloader() {
         }, index == 0 ? 1000 : 150)
     }, [index])
 
-    const initialPath = `M0 0 L\${dimension.width} 0 L\${dimension.width} \${dimension.height} Q\${dimension.width/2} \${dimension.height + 300} 0 \${dimension.height}  L0 0`
-    const targetPath = `M0 0 L\${dimension.width} 0 L\${dimension.width} 0 Q\${dimension.width/2} 0 0 0 L0 0`
+    const initialPath = `M0 0 L${dimension.width} 0 L${dimension.width} ${dimension.height} Q${dimension.width/2} ${dimension.height + 300} 0 ${dimension.height}  L0 0`
+    const targetPath = `M0 0 L${dimension.width} 0 L${dimension.width} 0 Q${dimension.width/2} 0 0 0 L0 0`
 
-    // On met 'any' ici pour éviter l'erreur de typage stricte sur le 'ease'
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const curve: any = {
         initial: {
             d: initialPath,
@@ -51,7 +63,7 @@ export default function Preloader() {
     )
 }
 
-// On ajoute ': any' pour calmer TypeScript
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const opacity: any = {
     initial: {
         opacity: 0
@@ -62,6 +74,7 @@ const opacity: any = {
     },
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const slideUp: any = {
     initial: {
         top: 0
