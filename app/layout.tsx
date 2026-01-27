@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import Header from "@/components/Header"; // <--- Import
+import Header from "@/components/Header";
+// Import du contexte de langue
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +21,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SmoothScroll>
-            <Header /> {/* <--- AJOUTE ÇA ICI */}
-            {children}
-        </SmoothScroll>
+        <LanguageProvider> {/* <--- ON OUVRE LE CONTEXTE DE LANGUE ICI */}
+            <SmoothScroll>
+                <Header />
+                {children}
+            </SmoothScroll>
+        </LanguageProvider> {/* <--- ON FERME LE CONTEXTE ICI */}
       </body>
     </html>
   );

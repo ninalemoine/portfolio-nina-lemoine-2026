@@ -3,8 +3,12 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link'; 
 import { FaArrowRight } from 'react-icons/fa';
+// Import du contexte de langue
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage(); // Récupération de la fonction de traduction
+  
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -17,13 +21,13 @@ export default function About() {
   return (
     <section id="about" ref={container} className="relative w-full min-h-screen bg-zinc-950 flex items-center justify-center overflow-hidden py-20">
       
-      {/* FOND PARALLAXE */}
+      {/* FOND PARALLAXE (Mots clés traduits aussi !) */}
       <div className="absolute inset-0 flex flex-col justify-center opacity-10 pointer-events-none select-none">
         <motion.div style={{ x: x1 }} className="whitespace-nowrap text-[15vw] font-bold leading-none text-white">
-          PYTHON SQL CARREFOUR DATA PYTHON
+          {t('about.bg.1')}
         </motion.div>
         <motion.div style={{ x: x2 }} className="whitespace-nowrap text-[15vw] font-bold leading-none text-white stroke-text">
-          BUSINESS ANALYTICS SKI INSIGHTS
+          {t('about.bg.2')}
         </motion.div>
       </div>
 
@@ -39,18 +43,17 @@ export default function About() {
         {/* TEXTE */}
         <div className="w-full md:w-1/2 text-white">
             <h2 className="text-4xl md:text-6xl font-bold mb-6">
-                Data Analyst & <br /><span className="text-zinc-500">Sportive.</span>
+                {t('about.title')}
             </h2>
             
             <p className="text-lg text-zinc-300 leading-relaxed mb-8">
-                Ancienne skieuse de haut niveau reconvertie dans la Data Science. 
-                J&apos;apporte la même rigueur sur les pistes que dans mes analyses.
+                {t('about.text')}
                 <br /><br />
-                Actuellement en alternance chez <strong>Carrefour</strong> et étudiante en MSc Business Analytics à Eugenia School.
+                <strong>{t('about.current')}</strong>
             </p>
 
             <Link href="/about" className="group inline-flex items-center gap-3 text-lg font-medium border-b border-white pb-1 hover:text-zinc-300 hover:border-zinc-300 transition-all">
-                Découvrir mon parcours complet
+                {t('about.btn')}
                 <span className="group-hover:translate-x-2 transition-transform">
                     <FaArrowRight size={14} />
                 </span>

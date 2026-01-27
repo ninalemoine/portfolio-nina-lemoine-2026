@@ -1,9 +1,14 @@
 'use client';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaDownload } from 'react-icons/fa'; // Import de l'icône
+import { FaDownload } from 'react-icons/fa';
+// On importe le contexte qu'on vient de créer
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Header() {
+  // On récupère la langue actuelle et les outils
+  const { language, toggleLanguage, t } = useLanguage();
+
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
@@ -17,25 +22,35 @@ export default function Header() {
             <span className="block group-hover:translate-y-1 transition-transform">Lemoine©</span>
         </Link>
 
-        {/* NAVIGATION CENTRALE (Cachée sur mobile) */}
+        {/* NAVIGATION CENTRALE (Traduite) */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-widest uppercase absolute left-1/2 -translate-x-1/2">
-            <NavLink href="/#about">À Propos</NavLink>
-            <NavLink href="/#projects">Projets</NavLink>
-            <NavLink href="/#contact">Contact</NavLink>
+            <NavLink href="/#about">{t('nav.about')}</NavLink>
+            <NavLink href="/#projects">{t('nav.projects')}</NavLink>
+            <NavLink href="/#contact">{t('nav.contact')}</NavLink>
         </nav>
 
-        {/* BOUTON CV (À DROITE) */}
+        {/* BOUTONS DROITE */}
         <div className="flex items-center gap-4">
+            
+            {/* BOUTON LANGUE (FR/EN) */}
+            <button 
+                onClick={toggleLanguage}
+                className="text-xs font-bold uppercase border border-white/30 px-3 py-2 rounded-full hover:bg-white hover:text-black transition-colors w-12 text-center"
+            >
+                {language === 'fr' ? 'EN' : 'FR'}
+            </button>
+
+            {/* BOUTON CV (Change selon la langue) */}
             <a 
-                href="/CV_Nina_LEMOINE_2025.pdf" 
+                href={language === 'fr' ? "/CV_Nina_LEMOINE_2025.pdf" : "/CV_Nina_LEMOINE_2025_EN.pdf"} 
                 download 
                 className="hidden md:flex items-center gap-2 px-4 py-2 bg-white text-black rounded-full text-xs font-bold uppercase tracking-widest hover:bg-zinc-200 transition-colors"
             >
                 <FaDownload size={10} />
-                CV
+                {t('cv.download')}
             </a>
 
-            {/* Menu Burger Mobile (On le garde pour le responsive) */}
+            {/* Menu Burger Mobile */}
             <button className="md:hidden text-sm font-bold uppercase">Menu</button>
         </div>
 

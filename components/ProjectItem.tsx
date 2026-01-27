@@ -2,8 +2,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/context/LanguageContext';
 
-// Correction 1 : On ignore l'erreur pour 'anim'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const anim: any = {
     initial: {width: 0},
@@ -13,8 +13,13 @@ const anim: any = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ProjectItem({ project }: any) {
+    const { language } = useLanguage();
     const [isActive, setIsActive] = useState(false);
-    const { title, category, image, slug } = project;
+    
+    // On déstructure l'objet reçu
+    const { title, image, slug } = project;
+    // On prend la catégorie dans la bonne langue
+    const categoryText = project.category[language]; 
 
     return (
         <Link 
@@ -32,7 +37,6 @@ export default function ProjectItem({ project }: any) {
                     animate={isActive ? "open" : "closed"} 
                     className="overflow-hidden flex justify-center items-center"
                 >
-                    {/* On force une largeur minimale pour que l'image ne soit pas écrasée pendant l'anim */}
                     <div className="w-[300px] h-[200px] mx-4 relative rounded-lg overflow-hidden shrink-0">
                         <img 
                             src={image} 
@@ -43,7 +47,7 @@ export default function ProjectItem({ project }: any) {
                 </motion.div>
 
                 <span className="text-sm font-normal tracking-widest ml-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-zinc-500 hidden md:block">
-                    ({category})
+                    ({categoryText})
                 </span>
 
             </div>

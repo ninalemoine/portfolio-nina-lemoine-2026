@@ -1,18 +1,23 @@
 'use client';
 import { motion } from 'framer-motion';
-import RippleEffect from './RippleEffect'; // <--- Import
+import RippleEffect from './RippleEffect';
+// Import du contexte de langue
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Hero() {
+  // Récupération de la fonction de traduction 't'
+  const { t } = useLanguage();
+
   return (
     <div className="relative w-full h-screen overflow-hidden bg-black">
       
-      {/* EFFET RIPPLE EN FOND (Remplace l'image statique) */}
+      {/* EFFET RIPPLE EN FOND */}
       <RippleEffect />
       
-      {/* CALQUE SOMBRE (pour que le texte reste lisible) */}
+      {/* CALQUE SOMBRE */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-10" />
 
-      {/* TON TEXTE */}
+      {/* TEXTE */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-4 z-20 pointer-events-none">
           <motion.h1 
               initial={{ opacity: 0, y: 50 }}
@@ -20,7 +25,7 @@ export default function Hero() {
               transition={{ duration: 1, delay: 1.5 }}
               className="text-6xl md:text-9xl font-bold tracking-tighter text-center"
           >
-              NINA LEMOINE
+              {t('hero.title')} {/* "NINA LEMOINE" */}
           </motion.h1>
           
           <motion.p 
@@ -29,7 +34,7 @@ export default function Hero() {
               transition={{ duration: 1, delay: 2 }}
               className="mt-6 text-xl md:text-2xl font-light tracking-widest uppercase"
           >
-              Data Scientist & Analyst
+              {t('hero.subtitle')} {/* "Data Scientist & Analyst" */}
           </motion.p>
       </div>
     </div>
